@@ -1,6 +1,7 @@
 import json
 import re
-from nltk.tokenize import word_tokenize
+import nltk
+from nltk import word_tokenize
 
 
 #extract tweets
@@ -11,14 +12,14 @@ for tweet in open('python.json', 'r'):
 #removes https (links, photos)
 removedTweets = []
 for tweet in tweets:
-    tempTweet = re.sub(r'http\S+', '', tweet)
+    tempTweet = re.sub(r"(?:\@|https?\://)\S+", "", tweet)
     tempTweet = re.sub(r'RT @\w+: ', '', tweet)
     removedTweets.append(tempTweet)
 
 #tokenizing text
 data = []
 for tweet in removedTweets:
-    data.append(word_tokenzie(tweet))
+    data.append(word_tokenize(tweet))
 
 
 #Graphing data
