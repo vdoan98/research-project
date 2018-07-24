@@ -24,7 +24,7 @@ data = []
 
 #vectorized data
 vectorizer = CountVectorizer(min_df=1)
-data = vectorizer.fit_transform(tweet)
+data = vectorizer.fit_transform([tweet])
 
 
 #Graphing data
@@ -43,11 +43,6 @@ data = vectorizer.fit_transform(tweet)
 #    plt.show()
 
 
-#Features of data
-#feature_1 = 'liberal'
-#feature_2 = 'conservative'
-#features_list = [feature_1, feature_2]
-
 # for f1, f2 in tweet_features:
 #     plt.scatter( f1, f2 )
 # plt.show()
@@ -55,6 +50,8 @@ data = vectorizer.fit_transform(tweet)
 from sklearn.cluster import KMeans
 import numpy as np
 
+
+#smaller_data = data[:len(data)/100] 
 kmeans = KMeans(n_clusters=2)
 kmeans.fit(data)
 
