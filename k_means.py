@@ -17,23 +17,24 @@ for tweet in tweets:
     tempTweet = re.sub(r'RT @\w+: ', '', tweet)
     removedTweets.append(tempTweet)
 
-#tokenizing text
+#tokenizing text: Get rid of syntax
+#Suggested::::
+#Works well with bag of words model 
 data = []
-#for tweet in removedTweets:
-#    data.append(word_tokenize(tweet))
+for tweet in removedTweets:
+    data.append(word_tokenize(tweet))
 
-#vectorized data
-vectorizer = CountVectorizer(min_df=1)
-data = vectorizer.fit_transform([tweet])
-
+#vectorized data: Keep meaningful relation 
+#vectorizer = CountVectorizer(min_df=1)
+#data = vectorizer.fit_transform([tweet])
 
 from sklearn.cluster import KMeans
 import numpy as np
 
 
-#smaller_data = data[:len(data)/100] 
+smaller_data = data[:len(data)/100] 
 kmeans = KMeans(n_clusters=2)
-kmeans.fit(data)
+kmeans.fit(smaller_data)
 
 print("Top terms per cluster:")
 order_centroids = model.cluster_centers_.argsort()[:, ::-1]

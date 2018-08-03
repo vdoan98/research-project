@@ -13,7 +13,7 @@ for tweet in open('python.json', 'r'):
 removedTweets = []
 for tweet in tweets:
     tempTweet = re.sub(r"(?:\@|https?\://)\S+", "", tweet)
-    tempTweet = re.sub(r'RT @\w+: ', '', tweet)
+    tempTweet = re.sub(r'RT @\w+: ', '', tempTweet)
     removedTweets.append(tempTweet)
 
 #tokenizing text
